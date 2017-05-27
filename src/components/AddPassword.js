@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Button, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 import { addPassword } from '../actions';
 
@@ -17,8 +18,8 @@ class AddPassword extends React.Component {
       isUpperCase: false,
       isSpecial: false,
       isNumber: false,
-      isLength5: false
-
+      isLength5: false,
+      isSubmitted: false
     }
   }
 
@@ -72,6 +73,9 @@ class AddPassword extends React.Component {
   onAddPassword(e) {
     e.preventDefault()
     if(this.validationSuccess()) {
+      this.setState({
+        isSubmitted: true
+      })
       this.props.addPassword(this.state.userInput)
     } else {
       console.log('password belum matching')
@@ -104,6 +108,9 @@ class AddPassword extends React.Component {
   render() {
     return (
       <div className="container">
+        { (this.state.isSubmitted) && <Redirect to={{
+              pathname: '/password-list',
+            }}/> }
         <form onSubmit={this.onAddPassword.bind(this)}>
           <FormGroup
             controlId="url"
