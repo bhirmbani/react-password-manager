@@ -2,18 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Button, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 
-import { AddPassword } from '../actions';
+import { addPassword } from '../actions';
 
 class AddPassword extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: '',
-      username: '',
-      password: '',
-      createdAt: '',
-      updatedAt: '',
-
+      userInput: {
+        url: '',
+        username: '',
+        password: '',
+      },
       isLowerCase: false,
       isUpperCase: false,
       isSpecial: false,
@@ -73,13 +72,17 @@ class AddPassword extends React.Component {
   onAddPassword(e) {
     e.preventDefault()
     if(this.validationSuccess()) {
-      console.log(this.state)
+      this.props.addPassword(this.state.userInput)
+    } else {
+      console.log('password belum matching')
     }
 
     const back = {
-      url: '',
-      username: '',
-      password: '',
+      userInput: {
+        url: '',
+        username: '',
+        password: '',
+      },
       hasLowerCase:false,
       hasUpperCase:false,
       hasNumber:false,
@@ -91,10 +94,10 @@ class AddPassword extends React.Component {
 
 
   handleChange(e) {
-   const updateState = this.state;
+   const updateState = this.state.userInput;
    updateState[e.target.name] = e.target.value;
    this.setState(updateState);
-   this.validate(this.state.password);
+   this.validate(this.state.userInput.password);
   }
 
 
@@ -110,7 +113,7 @@ class AddPassword extends React.Component {
               type="text"
               name="url"
               onChange={this.handleChange.bind(this)}
-              value={this.state.url}
+              value={this.state.userInput.url}
               placeholder="Enter text"
             />
           </FormGroup>
@@ -121,7 +124,7 @@ class AddPassword extends React.Component {
               type="text"
               name="username"
               onChange={this.handleChange.bind(this)}
-              value={this.state.username}
+              value={this.state.userInput.username}
               placeholder="Enter username"
             />
           </FormGroup>
@@ -132,7 +135,7 @@ class AddPassword extends React.Component {
               type="password"
               name="password"
               onChange={this.handleChange.bind(this)}
-              value={this.state.password}
+              value={this.state.userInput.password}
               placeholder="Enter Password"
             />
             <FormControl.Feedback />
@@ -156,7 +159,7 @@ class AddPassword extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addPassword: passData => dispatch(addPassword(passData));
+  addPassword: passData => dispatch(addPassword(passData)),
 })
 
 export default connect(null, mapDispatchToProps)(AddPassword);
