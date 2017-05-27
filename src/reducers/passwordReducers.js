@@ -1,4 +1,5 @@
 import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS, DEL_PASSWORD_SUCCESS, EDIT_PASSWORD_SUCCESS } from '../actions/constants';
+import { fromNow, year } from '../helpers/';
 
 const initialState = [];
 
@@ -12,13 +13,13 @@ const addPassword = (state, data) => {
     maxId = Math.max(...ids);
   }
   const newId = maxId + 1;
-  const createdAt = new Date();
+  const createdAt = year(new Date);
   const newPasswordData = {
     id: newId,
     url: url,
     username: username,
     password: password,
-    createdAt: createdAt.toISOString(),
+    createdAt: createdAt,
     updatedAt: ''
   }
   const newState = [...state, newPasswordData]
@@ -35,7 +36,7 @@ const delData = (state, id) => {
 }
 
 const editPassword = (state, updatedPass) => {
-  const updatedAt = new Date().toISOString();
+  const updatedAt = new Date();
   const newState = state.map(data => {
     if(data.id === updatedPass.id) {
       return {

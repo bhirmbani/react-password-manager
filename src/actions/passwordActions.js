@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS, DEL_PASSWORD_SUCCESS, EDIT_PASSWORD_SUCCESS } from './constants';
 
+import { fromNow, year } from '../helpers/'
+
 export const addPasswordSuccess = (newPassword) => {
   return {
     type: ADD_PASSWORD_SUCCESS,
@@ -9,7 +11,7 @@ export const addPasswordSuccess = (newPassword) => {
 }
 
 export const addPassword = (newPassword) => {
-  const newPasswordWithDate = { ...newPassword, createdAt: new Date().toISOString(), updatedAt: '' }
+  const newPasswordWithDate = { ...newPassword, createdAt: year(new Date), updatedAt: '' }
   return(dispatch) => {
     axios.post(`http://localhost:3000/passwords`, newPasswordWithDate)
     .then(res => dispatch(addPasswordSuccess(res.data)));
@@ -56,7 +58,7 @@ export const editPassword = (data) => {
     username: data.username,
     password: data.password,
     createdAt: data.createdAt,
-    updatedAt: new Date().toISOString()
+    updatedAt: new Date(),
   }
   return (dispatch) => {
     axios.patch(`http://localhost:3000/passwords/${data.id}`, newDataWithDate)

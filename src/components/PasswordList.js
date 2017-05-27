@@ -3,6 +3,7 @@ import { Table, Button, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getPasswords, delPassword } from '../actions';
 
+import { fromNow } from '../helpers';
 import EditPassword from './EditPassword';
 
 class TableCom extends React.Component {
@@ -73,8 +74,8 @@ class TableCom extends React.Component {
               <th>URL</th>
               <th>Username</th>
               <th>Password</th>
-              <th>created At</th>
-              <th>updated At</th>
+              <th>Date created</th>
+              <th>Last updated</th>
               <th>Delete</th>
               <th>Edit</th>
             </tr>
@@ -87,7 +88,7 @@ class TableCom extends React.Component {
                       <td>{password.username}</td>
                       <td>{password.password}</td>
                       <td>{password.createdAt}</td>
-                      <td>{password.updatedAt}</td>
+                      <td>{password.updatedAt ? fromNow(password.updatedAt) : ''}</td>
                       <td><Button 
                       onClick={() => {this.onClickDelete(password.id, password)}} 
                       bsSize="xsmall" 
