@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Button, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+
+import { AddPassword } from '../actions';
 
 class AddPassword extends React.Component {
   constructor(props) {
@@ -148,10 +151,13 @@ class AddPassword extends React.Component {
           
         </form>
       </div>
-      
     )
   }
 }
 
-export default AddPassword;
+const mapDispatchToProps = dispatch => ({
+  addPassword: passData => dispatch(addPassword(passData));
+})
+
+export default connect(null, mapDispatchToProps)(AddPassword);
 
