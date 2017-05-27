@@ -88,7 +88,7 @@ class TableCom extends React.Component {
                       <td>{password.username}</td>
                       <td>{password.password}</td>
                       <td>{password.createdAt}</td>
-                      <td>{password.updatedAt ? fromNow(password.updatedAt) : ''}</td>
+                      <td>{password.updatedAt ? fromNow(password.updatedAt) : 'not updated yet'}</td>
                       <td><Button 
                       onClick={() => {this.onClickDelete(password.id, password)}} 
                       bsSize="xsmall" 
