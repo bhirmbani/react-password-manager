@@ -133,7 +133,7 @@ class AddPassword extends React.Component {
               placeholder="Enter Password"
             />
             <FormControl.Feedback />
-            <HelpBlock>Password at least must have one uppercase, lowercase, number, special character and 5 or more length</HelpBlock>
+            <HelpBlock>Password at least must have one uppercase, lowercase, number, special character and more than 5 character length</HelpBlock>
           </FormGroup>
           
           <div>[ <label style={{color:'green'}}> {this.state.isLowerCase ? ' v ' : '' } </label> ] Password at least must have 1 lowercase character</div>
