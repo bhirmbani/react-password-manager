@@ -1,4 +1,4 @@
-import { ADD_PASSWORD_SUCCESS } from '../actions/constants';
+import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS } from '../actions/constants';
 
 const initialState = [];
 
@@ -25,9 +25,14 @@ const addPassword = (state, data) => {
   return newState;
 }
 
+const getPasswords = (state, passwords) => {
+  return passwords;
+}
+
 const passwordReducer = (state = initialState, action) => {
   switch(action.type) {
     case ADD_PASSWORD_SUCCESS: return addPassword(state, action.payload);
+    case GET_PASSWORDS_SUCCESS: return getPasswords(state, action.payload);
     default: return state;
   }
 }

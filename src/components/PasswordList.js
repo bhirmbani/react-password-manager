@@ -1,47 +1,56 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { getPasswords } from '../actions';
 
-const TableCom = () => (
-  <div className="container">
-    <Table striped bordered condensed hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>URL</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>CreatedAt</th>
-          <th>UpdatedAt</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>@fat</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
-  </div>
-)
+class TableCom extends React.Component {
 
-export default TableCom
+  componentDidMount () {
+    this.props.getPasswords()
+    console.log(this.props.passwords)
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>URL</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>created At</th>
+              <th>updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.passwords.map((password, idx) => {
+              return <tr key={idx}>
+                      <td>{password.id}</td>
+                      <td>{password.url}</td>
+                      <td>{password.username}</td>
+                      <td>{password.password}</td>
+                      <td>{password.createdAt}</td>
+                      <td>{password.updatedAt}</td>
+                    </tr>
+            })}
+          </tbody>
+        </Table>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    passwords: state.passwords
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getPasswords: () => dispatch(getPasswords())
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableCom)

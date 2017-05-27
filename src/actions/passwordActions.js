@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_PASSWORD_SUCCESS } from './constants';
+import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS } from './constants';
 
 export const addPasswordSuccess = (newPassword) => {
   return {
@@ -13,5 +13,19 @@ export const addPassword = (newPassword) => {
   return(dispatch) => {
     axios.post(`http://localhost:3000/passwords`, newPasswordWithDate)
     .then(res => dispatch(addPasswordSuccess(res.data)));
+  }
+}
+
+export const getPasswordsSuccess = (data) => {
+  return {
+    type: GET_PASSWORDS_SUCCESS,
+    payload: data
+  }
+}
+
+export const getPasswords = () => {
+  return (dispatch) => {
+    axios.get('http://localhost:3000/passwords')
+    .then(res => dispatch(getPasswordsSuccess(res.data)));
   }
 }
