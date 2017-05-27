@@ -3,6 +3,8 @@ import { Table, Button, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getPasswords, delPassword } from '../actions';
 
+import EditPassword from './EditPassword';
+
 class TableCom extends React.Component {
   constructor(props) {
     super(props)
@@ -74,6 +76,7 @@ class TableCom extends React.Component {
               <th>created At</th>
               <th>updated At</th>
               <th>Delete</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -89,6 +92,8 @@ class TableCom extends React.Component {
                       onClick={() => {this.onClickDelete(password.id, password)}} 
                       bsSize="xsmall" 
                       bsStyle="danger">Delete</Button></td>
+                      <td>
+                      <EditPassword id={password.id} url={password.url} username={password.username} password={password.password} createdAt={password.createdAt} /></td>
                     </tr>
             })}
           </tbody>
