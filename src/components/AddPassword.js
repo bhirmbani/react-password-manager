@@ -5,6 +5,12 @@ import { Redirect } from 'react-router-dom';
 
 import { addPassword } from '../actions';
 
+const styles = {
+    form: {
+      "padding": 20,
+    }
+  }
+
 class AddPassword extends React.Component {
   constructor(props) {
     super(props)
@@ -104,14 +110,13 @@ class AddPassword extends React.Component {
    this.validate(this.state.userInput.password);
   }
 
-
   render() {
     return (
       <div className="container">
         { (this.state.isSubmitted) && <Redirect to={{
               pathname: '/password-list',
             }}/> }
-        <form onSubmit={this.onAddPassword.bind(this)}>
+        <form style={styles.form} onSubmit={this.onAddPassword.bind(this)}>
           <FormGroup
             controlId="url"
           >
@@ -121,7 +126,7 @@ class AddPassword extends React.Component {
               name="url"
               onChange={this.handleChange.bind(this)}
               value={this.state.userInput.url}
-              placeholder="Enter text"
+              placeholder="Enter url"
             />
           </FormGroup>
 
