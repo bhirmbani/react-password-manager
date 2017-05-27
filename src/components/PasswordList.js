@@ -98,6 +98,14 @@ class TableCom extends React.Component {
             })}
           </tbody>
         </Table>
+        <div>
+          {this.props.passwords.length === 0 &&
+            <Alert bsStyle="info">
+              <strong>You have no password stored!</strong> It's better for you to add some password first.
+            </Alert>
+          }
+        </div>
+        
       </div>
     )
   }
