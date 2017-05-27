@@ -1,6 +1,7 @@
-import { addPassword, getPasswords } from './passwordActions'
+import { addPassword, getPasswords, delPassword } from './passwordActions'
 
 export {
   addPassword,
-  getPasswords
+  getPasswords,
+  delPassword
 }

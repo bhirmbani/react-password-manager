@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS } from './constants';
+import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS, DEL_PASSWORD_SUCCESS } from './constants';
 
 export const addPasswordSuccess = (newPassword) => {
   return {
@@ -27,5 +27,20 @@ export const getPasswords = () => {
   return (dispatch) => {
     axios.get('http://localhost:3000/passwords')
     .then(res => dispatch(getPasswordsSuccess(res.data)));
+  }
+}
+
+export const delPasswordSuccess = (id) => {
+  return {
+    type: DEL_PASSWORD_SUCCESS,
+    payload: id
+  }
+  
+}
+
+export const delPassword = (id) => {
+  return (dispatch) => {
+    axios.delete(`http://localhost:3000/passwords/${id}`)
+    .then(res => dispatch(delPasswordSuccess(id)));
   }
 }
