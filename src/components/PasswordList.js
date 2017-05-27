@@ -60,7 +60,7 @@ class TableCom extends React.Component {
         { (this.state.alertDelVisible) &&
           <Alert bsStyle="warning">
           <h4>Are you sure want to delete this {this.state.data.password} password with username of {this.state.data.username} and url of {this.state.data.url} from our list?</h4>
-          <p>This action is reversible. Please be sure.</p>
+          <p>This action is irreversible. Please be sure.</p>
             <p>
             <Button onClick={() => {this.onConfirmDelete(this.state.data.id)}} bsStyle="danger">I am sure</Button>
             <span> or </span>
