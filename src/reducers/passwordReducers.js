@@ -1,5 +1,5 @@
 import { ADD_PASSWORD_SUCCESS, GET_PASSWORDS_SUCCESS, DEL_PASSWORD_SUCCESS, EDIT_PASSWORD_SUCCESS } from '../actions/constants';
-import { fromNow, year } from '../helpers/';
+import { year } from '../helpers/';
 
 const initialState = [];
 
@@ -13,7 +13,7 @@ const addPassword = (state, data) => {
     maxId = Math.max(...ids);
   }
   const newId = maxId + 1;
-  const createdAt = year(new Date);
+  const createdAt = year(new Date());
   const newPasswordData = {
     id: newId,
     url: url,

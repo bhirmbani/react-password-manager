@@ -1,6 +1,6 @@
 import React from 'react';
 import { Breadcrumb } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => (
   <div className="container">
