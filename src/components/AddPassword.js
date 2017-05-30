@@ -11,7 +11,7 @@ const styles = {
     }
   }
 
-class AddPassword extends React.Component {
+export class AddPassword extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
